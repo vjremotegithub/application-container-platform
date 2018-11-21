@@ -1,11 +1,11 @@
 # RDS Remote Access
 Currently RDS instances created by the acp team can only be accessed from within the cluster. By following this guide you can setup a proxy within your namespace which will allow you to access your postgres instance locally.
 
-##Step 1
+## Step 1
 
 Run a postgres client container to proxy / connect through. Below is an example deployment to create this, which refers to the RDS credentials secret in your namespace:
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -66,7 +66,7 @@ spec:
             memory: 256Mi
 ```
 
-##Step 2
+## Step 2
 Run port-forwarding via the kubectl client tool (the user would need to get the id of the running postgres-client container that is created via the above deployment)
 
 ```
@@ -77,7 +77,7 @@ kubectl --namespace <namepace> get pods
 kubectl --namespace <namespace> port-forward <postgres-container-id> 5432
 ```
 
-##Step 3
+## Step 3
 Connect using psql or pgadmin to localhost:
 
 ```
